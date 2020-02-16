@@ -12,6 +12,27 @@ code {
     monospace;
 }
 
+.flex {
+  display: flex;
+}
+
 .block {
   display: block;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.text-center {
+  text-align: center;
+}
+
+img {
+  max-width: 600px;
+  width: 100%;
+}
+
+#root {
+  padding: 40px;
 }

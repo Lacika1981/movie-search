@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from '@reach/router';
+import './Details.scss';
 
 const Details = props => {
   console.log({ props });
@@ -17,18 +18,20 @@ const Details = props => {
   console.log(movie);
   return props.id ? (
     <Fragment>
-      <Link to="/">OMDB Movie Search</Link>
-      <header>
+      <Link className="nav" to="/">
+        OMDB Movie Search
+      </Link>
+      <header className="flex">
         <h1>{movie.Title}</h1>
         <p className="year">{`Released: ${movie.Year}`}</p>
-        <p className="director">{`Director: ${movie.Director}`}</p>
+        <p className="director bold">{`Director: ${movie.Director}`}</p>
       </header>
-      <section className="actors">
-        <p className="actors-title">Actors</p>
+      <section className="actors text-center">
+        <p className="actors-title bold">Actors</p>
         <p>{movie.Actors}</p>
       </section>
-      <section className="plot">
-        <p className="plot-title">Plot</p>
+      <section className="plot text-center">
+        <p className="plot-title bold">Plot</p>
         <p className="plot_description">{movie.Plot}</p>
       </section>
       <section className="poster">
@@ -38,10 +41,10 @@ const Details = props => {
         {movie.Ratings
           ? movie.Ratings.map(rate => {
               return (
-                <Fragment key={rate.Source}>
-                  <p className="ratings-source">{rate.Source}</p>
+                <div className="flex ratings-container" key={rate.Source}>
+                  <p className="ratings-source bold">{rate.Source}</p>
                   <p className="ratings-score">{rate.Value}</p>
-                </Fragment>
+                </div>
               );
             })
           : null}

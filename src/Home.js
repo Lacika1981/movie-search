@@ -51,11 +51,13 @@ const Home = () => {
           ? movies.Search.map(movie => {
               return (
                 <Link to={`/detail/${movie.imdbID}`} key={movie.imdbID}>
-                  <img
-                    src={movie.Poster}
-                    alt={movie.Title}
-                    // onClick={() => searchMovie(movie.imdbID)}
-                  />
+                  <section className="poster">
+                    <img
+                      src={movie.Poster}
+                      alt={movie.Title}
+                      // onClick={() => searchMovie(movie.imdbID)}
+                    />
+                  </section>
                 </Link>
               );
             })
