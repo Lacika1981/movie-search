@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { Router, Link } from '@reach/router';
-import Search from './Search';
 import Home from './Home';
 import './Nav.scss';
 
@@ -21,7 +20,6 @@ export default function Nav() {
 
       <Router>
         <Home path="/" />
-        <Search path="/search" />
       </Router>
     </Fragment>
   );
