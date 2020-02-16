@@ -1,67 +1,64 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Link, Router } from '@reach/router';
-import Movie from './Movie';
-import './App.scss';
+import Details from './Details';
 
-function Home() {
-  const [searchValue, setSearchField] = useState('alien');
-  const [movies, setMovie] = useState([]);
-  const [movie, setMovieTitle] = useState(searchValue);
-  const [clickedMovie, setClickedMovie] = useState('');
+const Home = () => {
+  const [searchValue, setSearch] = useState('alien');
+  const [movies, setMovies] = useState([]);
+  const [inputValue, setInput] = useState('');
+  const [selected, setSelected] = useState('');
 
   useEffect(() => {
     async function fetchData() {
-      await fetch(`http://www.omdbapi.com/?s=${movie}&apikey=7f555475`)
+      await fetch(`http://www.omdbapi.com/?s=${searchValue}&apikey=7f555475`)
         .then(response => response.json())
-        .then(json => setMovie(json));
+        .then(json => setMovies(json));
     }
     fetchData();
-  }, [movie]);
+  }, [searchValue]);
 
-  return movies.Response === 'True' ? (
+  return (
     <Fragment>
-      <h1 className="omdb-title">
-        OMDB Movie Search
-        <form>
-          <label htmlFor="search-field">
-            <input
-              id="search-field"
-              type="text"
-              value={searchValue}
-              onChange={e => setSearchField(e.target.value)}
-            />
-          </label>
-          <input
-            type="submit"
-            value="Submit"
-            onClick={e => {
-              e.preventDefault();
-              setMovieTitle(searchValue);
-            }}
-          />
-        </form>
-      </h1>
-
-      <div className="grid landing-container">
-        {movies.Search.map(movieElem => {
-          return (
-            <Fragment key={movieElem.imdbID}>
-              <Link to={`/movie/${movieElem.Title}`}>
-                <img
-                  src={movieElem.Poster}
-                  alt={movieElem.Title}
-                  onClick={e => setClickedMovie(movieElem.imdbID)}
-                />
-              </Link>
-            </Fragment>
-          );
-        })}
-        <Router>
-          <Movie path={`/movie/${clickedMovie.Title}`} />
-        </Router>
+      <form>
+        <label htmlFor="search-input">Search for Movie</label>
+        <input
+          id="search-input"
+          type="text"
+          name="search-field"
+          onChange={e => {
+            e.preventDefault();
+            setInput(e.target.value);
+          }}
+        ></input>
+        <input
+          type="submit"
+          value="Search it"
+          onClick={e => {
+            e.preventDefault();
+            setSearch(inputValue);
+          }}
+        ></input>
+      </form>
+      <div>
+        {movies.Response === 'True'
+          ? movies.Search.map(movie => {
+              return (
+                <Link to={`/detail/${movie.Title}`} key={movie.imdbID}>
+                  <img
+                    src={movie.Poster}
+                    alt={movie.Title}
+                    onClick={() => setSelected(movie)}
+                  />
+                </Link>
+              );
+            })
+          : null}
       </div>
+      <Router>
+        <Details selected={selected} path={`detail/:${selected.Title}`} />
+      </Router>
     </Fragment>
-  ) : null;
-}
+  );
+};
 
 export default Home;

@@ -1,12 +1,16 @@
 import React, { Fragment } from 'react';
 import Home from './Home';
-import Movie from './Movie';
 import { Router } from '@reach/router';
+import Details from './Details';
 
 function App() {
   return (
     <Fragment>
-      <Home />
+      <Router>
+        <Home path="/">
+          <Details path="/detail/" />
+        </Home>
+      </Router>
     </Fragment>
   );
 }
