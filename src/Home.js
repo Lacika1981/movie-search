@@ -6,7 +6,7 @@ const Home = () => {
   const [searchValue, setSearch] = useState('alien');
   const [movies, setMovies] = useState([]);
   const [inputValue, setInput] = useState('');
-  const [selected, setSelected] = useState('');
+  //   const [selected, setSelected] = useState();
 
   useEffect(() => {
     async function fetchData() {
@@ -16,6 +16,13 @@ const Home = () => {
     }
     fetchData();
   }, [searchValue]);
+
+  //   const searchMovie = id => {
+  //     movies.Search.find(movie => {
+  //       setSelected(movie);
+  //       return movie.imdbID === id;
+  //     });
+  //   };
 
   return (
     <Fragment>
@@ -43,20 +50,17 @@ const Home = () => {
         {movies.Response === 'True'
           ? movies.Search.map(movie => {
               return (
-                <Link to={`/detail/${movie.Title}`} key={movie.imdbID}>
+                <Link to={`/detail/${movie.imdbID}`} key={movie.imdbID}>
                   <img
                     src={movie.Poster}
                     alt={movie.Title}
-                    onClick={() => setSelected(movie)}
+                    // onClick={() => searchMovie(movie.imdbID)}
                   />
                 </Link>
               );
             })
           : null}
       </div>
-      <Router>
-        <Details selected={selected} path={`detail/:${selected.Title}`} />
-      </Router>
     </Fragment>
   );
 };

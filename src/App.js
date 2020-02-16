@@ -7,9 +7,8 @@ function App() {
   return (
     <Fragment>
       <Router>
-        <Home path="/">
-          <Details path="/detail/" />
-        </Home>
+        <Home path="/"></Home>
+        <Details path="/detail/:id" />
       </Router>
     </Fragment>
   );
