@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <Fragment>
-      <Link className="nav" to={`${process.env.PUBLIC_URL}/`}>
+      <Link className="nav home-link" to={`${process.env.PUBLIC_URL}/`}>
         OMDB Movie Search
       </Link>
       <form>
