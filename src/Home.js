@@ -26,6 +26,9 @@ const Home = () => {
 
   return (
     <Fragment>
+      <Link className="nav" to="/">
+        OMDB Movie Search
+      </Link>
       <form>
         <label htmlFor="search-input">Search for Movie</label>
         <input
@@ -38,6 +41,7 @@ const Home = () => {
           }}
         ></input>
         <input
+          className="search-button"
           type="submit"
           value="Search it"
           onClick={e => {
@@ -46,12 +50,13 @@ const Home = () => {
           }}
         ></input>
       </form>
-      <div>
+      <div className="search-result">
         {movies.Response === 'True'
           ? movies.Search.map(movie => {
               return (
                 <Link to={`/detail/${movie.imdbID}`} key={movie.imdbID}>
                   <section className="poster">
+                    <p className="text-center title bold">{movie.Title}</p>
                     <img
                       src={movie.Poster}
                       alt={movie.Title}
