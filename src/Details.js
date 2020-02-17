@@ -7,7 +7,7 @@ const Details = props => {
 
   useEffect(() => {
     async function fetchData() {
-      await fetch(`http://www.omdbapi.com/?i=${props.id}&apikey=7f555475`)
+      await fetch(`https://www.omdbapi.com/?i=${props.id}&apikey=7f555475`)
         .then(response => response.json())
         .then(json => setMovie(json));
     }
@@ -15,7 +15,7 @@ const Details = props => {
   }, [props.id]);
   return props.id ? (
     <Fragment>
-      <Link className="nav" to="/">
+      <Link className="nav" to={`${process.env.PUBLIC_URL}/`}>
         OMDB Movie Search
       </Link>
       <div className="outer-container">

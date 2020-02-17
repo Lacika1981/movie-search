@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { Link, Router } from '@reach/router';
-import Details from './Details';
+import { Link } from '@reach/router';
 
 const Home = () => {
   const [searchValue, setSearch] = useState('alien');
@@ -10,23 +9,16 @@ const Home = () => {
 
   useEffect(() => {
     async function fetchData() {
-      await fetch(`http://www.omdbapi.com/?s=${searchValue}&apikey=7f555475`)
+      await fetch(`https://www.omdbapi.com/?s=${searchValue}&apikey=7f555475`)
         .then(response => response.json())
         .then(json => setMovies(json));
     }
     fetchData();
   }, [searchValue]);
 
-  //   const searchMovie = id => {
-  //     movies.Search.find(movie => {
-  //       setSelected(movie);
-  //       return movie.imdbID === id;
-  //     });
-  //   };
-
   return (
     <Fragment>
-      <Link className="nav" to="/">
+      <Link className="nav" to={`${process.env.PUBLIC_URL}/`}>
         OMDB Movie Search
       </Link>
       <form>
@@ -54,14 +46,13 @@ const Home = () => {
         {movies.Response === 'True'
           ? movies.Search.map(movie => {
               return (
-                <Link to={`/detail/${movie.imdbID}`} key={movie.imdbID}>
+                <Link
+                  to={`${process.env.PUBLIC_URL}/detail/${movie.imdbID}`}
+                  key={movie.imdbID}
+                >
                   <section className="poster">
                     <p className="text-center title bold">{movie.Title}</p>
-                    <img
-                      src={movie.Poster}
-                      alt={movie.Title}
-                      // onClick={() => searchMovie(movie.imdbID)}
-                    />
+                    <img src={movie.Poster} alt={movie.Title} />
                   </section>
                 </Link>
               );

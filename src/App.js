@@ -6,9 +6,9 @@ import Details from './Details';
 function App() {
   return (
     <Fragment>
-      <Router>
-        <Home path="/"></Home>
-        <Details path="/detail/:id" />
+      <Router path={`${process.env.PUBLIC_URL}/public/apps/movie-search`}>
+        <Home path={`${process.env.PUBLIC_URL}/`}></Home>
+        <Details path={`${process.env.PUBLIC_URL}/detail/:id`} />
       </Router>
     </Fragment>
   );
