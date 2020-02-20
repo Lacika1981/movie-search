@@ -1,47 +1,15 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from '@reach/router';
+import Search from './Search';
+import Nav from './Nav';
 
 const Home = () => {
-  const [searchValue, setSearch] = useState('alien');
-  const [movies, setMovies] = useState([]);
-  const [inputValue, setInput] = useState('');
-  //   const [selected, setSelected] = useState();
-
-  useEffect(() => {
-    async function fetchData() {
-      await fetch(`https://www.omdbapi.com/?s=${searchValue}&apikey=7f555475`)
-        .then(response => response.json())
-        .then(json => setMovies(json));
-    }
-    fetchData();
-  }, [searchValue]);
+  const [movies, setThem] = useState([]);
 
   return (
     <Fragment>
-      <Link className="nav home-link" to={`${process.env.PUBLIC_URL}/`}>
-        OMDB Movie Search
-      </Link>
-      <form>
-        <label htmlFor="search-input">Search for Movie</label>
-        <input
-          id="search-input"
-          type="text"
-          name="search-field"
-          onChange={e => {
-            e.preventDefault();
-            setInput(e.target.value);
-          }}
-        ></input>
-        <input
-          className="search-button"
-          type="submit"
-          value="Search it"
-          onClick={e => {
-            e.preventDefault();
-            setSearch(inputValue);
-          }}
-        ></input>
-      </form>
+      <Nav />
+      <Search setThem={setThem} />
       <div className="search-result">
         {movies.Response === 'True'
           ? movies.Search.map(movie => {

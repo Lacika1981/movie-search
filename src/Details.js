@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { Link } from '@reach/router';
 import './Details.scss';
+import Nav from './Nav';
 
 const Details = props => {
   const [movie, setMovie] = useState('');
@@ -15,9 +15,7 @@ const Details = props => {
   }, [props.id]);
   return props.id ? (
     <Fragment>
-      <Link className="nav home-link" to={`${process.env.PUBLIC_URL}/`}>
-        OMDB Movie Search
-      </Link>
+      <Nav />
       <div className="outer-container">
         <div className="left">
           <header className="flex">
