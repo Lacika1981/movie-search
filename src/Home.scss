@@ -1,0 +1,40 @@
+.poster {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  &:hover {
+    .overlay {
+      left: 0;
+    }
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: left 0.5s;
+  background-color: rgba(0, 0, 0, 0.75);
+  p {
+    color: #fff;
+  }
+}
+
+.missing-image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.1);
+  &::after {
+    content: 'Not found image';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

@@ -1,7 +1,8 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link } from '@reach/router';
 import Search from './Search';
 import Nav from './Nav';
+import './Home.scss';
 
 const Home = () => {
   const [movies, setThem] = useState([]);
@@ -19,8 +20,10 @@ const Home = () => {
                   key={movie.imdbID}
                 >
                   <section className="poster">
-                    <p className="text-center title bold">{movie.Title}</p>
                     <img src={movie.Poster} alt={movie.Title} />
+                    <div className="overlay">
+                      <p className="text-center title bold">{movie.Title}</p>
+                    </div>
                   </section>
                 </Link>
               );

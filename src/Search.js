@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 
 const Search = props => {
-  const [searchValue, setSearch] = useState('');
+  const [searchValue, setSearch] = useState('friends');
   const [movies, setMovies] = useState([]);
   const [inputValue, setInput] = useState('');
 
