@@ -11,7 +11,7 @@ const Home = () => {
     <Fragment>
       <Nav />
       <Search setThem={setThem} />
-      <div className="search-result">
+      <div className='search-result'>
         {movies.Response === 'True'
           ? movies.Search.map(movie => {
               return (
@@ -19,10 +19,10 @@ const Home = () => {
                   to={`${process.env.PUBLIC_URL}/detail/${movie.imdbID}`}
                   key={movie.imdbID}
                 >
-                  <section className="poster">
+                  <section className='poster'>
                     <img src={movie.Poster} alt={movie.Title} />
-                    <div className="overlay">
-                      <p className="text-center title bold">{movie.Title}</p>
+                    <div className='overlay'>
+                      <p className='text-center title bold'>{movie.Title}</p>
                     </div>
                   </section>
                 </Link>
