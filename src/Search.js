@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 
 const Search = props => {
   const [inputValue, setInput] = useState('');
-  const [selectValue, setSelect] = useState('');
+  const [selectValue, setSelect] = useState('Movie');
   const [searchValue, setSearch] = useState('');
   const [currentPage, setPage] = useState(1);
   const [maxPages, setPages] = useState();
@@ -40,6 +40,7 @@ const Search = props => {
 
   const handleTypeSelection = e => {
     e.preventDefault();
+    setPage(1);
     setSelect(e.target.value);
   };
 
@@ -47,6 +48,15 @@ const Search = props => {
     e.preventDefault();
     setSearch(inputValue);
   };
+
+  console.log({
+    inputValue,
+    selectValue,
+    searchValue,
+    currentPage,
+    maxPages,
+    pageArray
+  });
 
   const style = {
     label: {
