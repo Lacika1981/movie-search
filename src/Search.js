@@ -49,14 +49,10 @@ const Search = props => {
     setSearch(inputValue);
   };
 
-  console.log({
-    inputValue,
-    selectValue,
-    searchValue,
-    currentPage,
-    maxPages,
-    pageArray
-  });
+  const handlePageSelection = e => {
+    e.preventDefault();
+    setPage(e.target.value);
+  };
 
   const style = {
     label: {
@@ -64,9 +60,6 @@ const Search = props => {
     },
     paginationContainer: {
       display: 'flex'
-    },
-    pagination: {
-      listStyle: 'none'
     }
   };
 
@@ -90,23 +83,21 @@ const Search = props => {
               <option value='series'>Series</option>
               <option value='episode'>Episode</option>
             </select>
-            <nav style={style.paginationContainer}>
-              {!pageArray.length
-                ? 'no results'
-                : pageArray.map(number => {
-                    console.log('called');
-                    return (
-                      <li
-                        style={style.pagination}
-                        value={number}
-                        key={number}
-                        onClick={e => setPage(e.target.value)}
-                      >
-                        {number}
-                      </li>
-                    );
-                  })}
-            </nav>
+            {pageArray.length ? (
+              <select
+                id='page-number'
+                style={style.paginationContainer}
+                onChange={handlePageSelection}
+              >
+                {pageArray.map(number => {
+                  return (
+                    <option value={number} key={number}>
+                      {number}
+                    </option>
+                  );
+                })}
+              </select>
+            ) : null}
           </Fragment>
         ) : null}
         <input
