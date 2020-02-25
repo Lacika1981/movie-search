@@ -105,12 +105,21 @@ const Search = props => {
             ) : null}
           </Fragment>
         ) : null}
-        <input
-          className='search-button'
-          type='submit'
-          value='Search it'
-          onClick={handleSearch}
-        ></input>
+        {inputValue.length >= 3 ? (
+          <input
+            className='search-button'
+            type='submit'
+            value='Search it'
+            onClick={handleSearch}
+          ></input>
+        ) : (
+          <input
+            className='search-button'
+            disabled
+            type='submit'
+            value='Search it'
+          ></input>
+        )}
       </form>
     </Fragment>
   );
