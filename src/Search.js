@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 
 const Search = props => {
   const [inputValue, setInput] = useState('');
-  const [selectValue, setSelect] = useState('Movie');
+  const [selectValue, setSelect] = useState('movie');
   const [searchValue, setSearch] = useState('');
   const [currentPage, setPage] = useState(1);
   const [maxPages, setPages] = useState();
@@ -40,13 +40,14 @@ const Search = props => {
 
   const handleTypeSelection = e => {
     e.preventDefault();
-    setPage(1);
     setSelect(e.target.value);
+    setPage('1');
   };
 
   const handleSearch = e => {
     e.preventDefault();
     setSearch(inputValue);
+    setPage('1');
   };
 
   const handlePageSelection = e => {
@@ -75,10 +76,15 @@ const Search = props => {
         ></input>
         {inputValue ? (
           <Fragment>
+            {console.log(currentPage)}
             <label style={style.label} htmlFor='type'>
               Select type(Default Movie)
             </label>
-            <select id='type' onChange={handleTypeSelection}>
+            <select
+              id='type'
+              onChange={handleTypeSelection}
+              value={selectValue}
+            >
               <option value='movie'>Movie</option>
               <option value='series'>Series</option>
               <option value='episode'>Episode</option>
@@ -88,14 +94,13 @@ const Search = props => {
                 id='page-number'
                 style={style.paginationContainer}
                 onChange={handlePageSelection}
+                value={currentPage}
               >
-                {pageArray.map(number => {
-                  return (
-                    <option value={number} key={number}>
-                      {number}
-                    </option>
-                  );
-                })}
+                {pageArray.map(number => (
+                  <option value={number} key={number}>
+                    {number}
+                  </option>
+                ))}
               </select>
             ) : null}
           </Fragment>
