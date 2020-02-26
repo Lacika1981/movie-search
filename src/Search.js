@@ -77,7 +77,6 @@ const Search = props => {
         ></input>
         {inputValue.length >= 3 ? (
           <Fragment>
-            {console.log(currentPage)}
             <label style={style.label} htmlFor='type'>
               Select type(Default Movie)
             </label>
