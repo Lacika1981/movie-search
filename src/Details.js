@@ -14,7 +14,7 @@ const Details = props => {
     fetchData();
   }, [props.id]);
 
-  return props.id ? (
+  return movie.Poster ? (
     <Fragment>
       <Nav />
       <div className='outer-container'>
@@ -52,7 +52,9 @@ const Details = props => {
         </div>
       </div>
     </Fragment>
-  ) : null;
+  ) : (
+    <h1 className='movie-preloader'>Loading...</h1>
+  );
 };
 
 export default Details;

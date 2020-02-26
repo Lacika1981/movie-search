@@ -14,6 +14,13 @@ const Home = () => {
     }
   };
 
+  const imageMissingHandler = e => {
+    return (
+      (e.target.src = `${process.env.PUBLIC_URL}/no-photo.png`),
+      e.target.classList.add('missing-image')
+    );
+  };
+
   return (
     <Fragment>
       <Nav />
@@ -27,7 +34,11 @@ const Home = () => {
                 key={movie.imdbID}
               >
                 <section className='poster'>
-                  <img src={movie.Poster} alt={movie.Title} />
+                  <img
+                    src={movie.Poster}
+                    alt={movie.Title}
+                    onError={e => imageMissingHandler(e)}
+                  />
                   <div className='overlay'>
                     <p className='text-center title bold'>{movie.Title}</p>
                   </div>

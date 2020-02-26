@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
+import './Search.scss';
 
 const Search = props => {
   const [inputValue, setInput] = useState('');
@@ -66,7 +67,7 @@ const Search = props => {
 
   return (
     <Fragment>
-      <form>
+      <form autoComplete='off'>
         <label htmlFor='search-input'>Search for Movie</label>
         <input
           id='search-input'
@@ -74,7 +75,7 @@ const Search = props => {
           name='search-field'
           onChange={handleSearchInput}
         ></input>
-        {inputValue ? (
+        {inputValue.length >= 3 ? (
           <Fragment>
             {console.log(currentPage)}
             <label style={style.label} htmlFor='type'>
